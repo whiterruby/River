@@ -65,7 +65,6 @@ export const SearchView: React.FC = () => {
   const [inputQuery, setInputQuery] = useState(searchQuery);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
-  const [openingId, setOpeningId] = useState<string | null>(null);
   const [previewFile, setPreviewFile] = useState<DriveFile | null>(null);
 
   const handleOpenLocal = (file: DriveFile) => {
