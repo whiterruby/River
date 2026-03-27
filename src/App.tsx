@@ -46,8 +46,9 @@ export default function App() {
   } = useDriveStore();
 
   // Bootstrap: load persisted settings then hydrate accounts + pool.
+  // Note: <html> already carries class="dark" from index.html, and setTheme
+  // keeps it in sync below, so no manual class toggle is needed here.
   useEffect(() => {
-    document.documentElement.classList.add('dark');
     loadAccounts();
     loadPoolSummary();
     driveApi.getSettings().then((s) => {
