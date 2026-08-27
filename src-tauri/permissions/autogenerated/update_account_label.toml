@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-update-account-label"
+description = "Enables the update_account_label command without any pre-configured scope."
+commands.allow = ["update_account_label"]
+
+[[permission]]
+identifier = "deny-update-account-label"
+description = "Denies the update_account_label command without any pre-configured scope."
+commands.deny = ["update_account_label"]

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-refresh-all-quotas"
+description = "Enables the refresh_all_quotas command without any pre-configured scope."
+commands.allow = ["refresh_all_quotas"]
+
+[[permission]]
+identifier = "deny-refresh-all-quotas"
+description = "Denies the refresh_all_quotas command without any pre-configured scope."
+commands.deny = ["refresh_all_quotas"]

@@ -1,0 +1,40 @@
+//! Tauri build script. Generates ACL for app commands (granular capabilities).
+
+fn main() {
+    tauri_build::try_build(
+        tauri_build::Attributes::new().app_manifest(
+            tauri_build::AppManifest::new().commands(&[
+                "get_accounts",
+                "get_pool_summary",
+                "import_accounts",
+                "export_accounts",
+                "export_accounts_encrypted",
+                "import_accounts_encrypted",
+                "delete_account",
+                "toggle_account",
+                "update_account_label",
+                "refresh_account_quota",
+                "refresh_all_quotas",
+                "list_account_files",
+                "search_all_accounts",
+                "start_google_oauth",
+                "get_settings",
+                "set_setting",
+                "open_url",
+                "download_file",
+                "upload_file_buffer",
+                "create_folder",
+                "delete_file",
+                "open_file_externally",
+                "save_file_to_downloads",
+                "get_stream_port",
+                "get_stream_token",
+                "get_stream_creds",
+                "mount_pool_drive",
+                "unmount_pool_drive",
+                "get_mount_status",
+            ]),
+        ),
+    )
+    .unwrap();
+}
