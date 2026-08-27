@@ -13,14 +13,19 @@
 > **Privacy & Security Notice:** <br>
 > River connects directly to Google Drive APIs through local loopback OAuth (`127.0.0.1`). It never transmits your access tokens, master encryption keys, or private files to any third-party intermediate server.
 
-Chat with us: [Discord](https://discord.gg/) | [Twitter / X](https://twitter.com/) | [GitHub Discussions](https://github.com/whiterruby/River/discussions)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Language-Rust%202021-orange.svg?logo=rust)](https://www.rust-lang.org/)
 [![Tauri](https://img.shields.io/badge/GUI-Tauri%20v2-blue.svg?logo=tauri)](https://tauri.app/)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey.svg)]()
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow.svg?logo=buy-me-a-coffee)](https://buymeacoffee.com/whiteruby)
 
 Yet another cloud pooling solution, written in **Rust** and **Tauri v2**. Works out of the box with zero configuration required. You have full control over your storage, aggregating multiple Google Drive accounts into one massive, unified, high-performance virtual drive mounted directly onto your operating system.
+
+<p align="center">
+  <a href="https://buymeacoffee.com/whiteruby" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="48">
+  </a>
+</p>
 
 ![Pool Dashboard](docs/screenshots/pool.png)
 
