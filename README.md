@@ -9,10 +9,6 @@
   [<a href="README.md">English</a>] | [<a href="README.md">Türkçe</a>]
 </p>
 
-> [!Caution]
-> **Privacy & Security Notice:** <br>
-> River connects directly to Google Drive APIs through local loopback OAuth (`127.0.0.1`). It never transmits your access tokens, master encryption keys, or private files to any third-party intermediate server.
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Language-Rust%202021-orange.svg?logo=rust)](https://www.rust-lang.org/)
 [![Tauri](https://img.shields.io/badge/GUI-Tauri%20v2-blue.svg?logo=tauri)](https://tauri.app/)
@@ -23,7 +19,7 @@ Yet another cloud pooling solution, written in **Rust** and **Tauri v2**. Works 
 
 <p align="center">
   <a href="https://buymeacoffee.com/whiteruby" target="_blank">
-    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="48">
+    <img src="docs/buymeacoffee.webp" alt="Buy Me A Coffee — whiteruby" width="340" style="border-radius: 12px;">
   </a>
 </p>
 
