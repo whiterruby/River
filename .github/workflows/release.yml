@@ -71,7 +71,7 @@ jobs:
             rpm
 
       - name: Install Frontend Dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install
 
       - name: Build Application and Release Bundles
         uses: tauri-apps/tauri-action@v0
