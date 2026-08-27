@@ -4,7 +4,28 @@
 pub mod commands;
 pub mod crypto;
 pub mod db;
+#[cfg(target_os = "linux")]
 pub mod fuse_mount;
+
+#[cfg(not(target_os = "linux"))]
+pub mod fuse_mount {
+    use crate::db::Database;
+    use std::sync::atomic::AtomicBool;
+    use std::sync::Arc;
+
+    pub fn mount_pool(
+        _db: Arc<Database>,
+        _mountpoint: &str,
+        _rt: tokio::runtime::Handle,
+        _shutdown: Arc<AtomicBool>,
+    ) -> Result<(), String> {
+        Err("Virtual disk mounting is currently supported on Linux via FUSE3".into())
+    }
+
+    pub fn unmount_pool(_mountpoint: &str) -> Result<(), String> {
+        Ok(())
+    }
+}
 pub mod google_api;
 pub mod models;
 pub mod oauth;
