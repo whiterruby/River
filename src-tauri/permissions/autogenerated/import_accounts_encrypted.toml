@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-import-accounts-encrypted"
+description = "Enables the import_accounts_encrypted command without any pre-configured scope."
+commands.allow = ["import_accounts_encrypted"]
+
+[[permission]]
+identifier = "deny-import-accounts-encrypted"
+description = "Denies the import_accounts_encrypted command without any pre-configured scope."
+commands.deny = ["import_accounts_encrypted"]

@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Rust build artifacts
+src-tauri/target/
+
+# Environment & secrets
+.env
+.env.*
+*.pem
+
+# OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Lockfiles (keep pnpm-lock.yaml, ignore others)
+package-lock.json
+yarn.lock
+
+# Tauri bundle output
+src-tauri/target/
+release/
+
+# Logs
+*.log

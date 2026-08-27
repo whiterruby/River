@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-unmount-pool-drive"
+description = "Enables the unmount_pool_drive command without any pre-configured scope."
+commands.allow = ["unmount_pool_drive"]
+
+[[permission]]
+identifier = "deny-unmount-pool-drive"
+description = "Denies the unmount_pool_drive command without any pre-configured scope."
+commands.deny = ["unmount_pool_drive"]

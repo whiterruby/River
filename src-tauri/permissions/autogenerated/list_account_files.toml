@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-list-account-files"
+description = "Enables the list_account_files command without any pre-configured scope."
+commands.allow = ["list_account_files"]
+
+[[permission]]
+identifier = "deny-list-account-files"
+description = "Denies the list_account_files command without any pre-configured scope."
+commands.deny = ["list_account_files"]

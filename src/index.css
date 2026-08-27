@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------
+   River design tokens — light theme (default)
+   Naming: --c- prefix for colors, --shadow- for elevations.
+   Dark overrides live in .dark {} below.
+   ------------------------------------------------------- */
+:root {
+  /* surface layers */
+  --c-paper:        #ECE2D0;
+  --c-paperDeep:    #E2D6C2;
+
+  /* typography */
+  --c-ink:          #24201D;
+  --c-muted:        #7E7369;
+
+  /* borders & dividers */
+  --c-line:         rgba(55, 40, 30, 0.05);
+
+  /* accent palette */
+  --c-amberMirai:   #C9A06A;
+  --c-amberDeep:    #B88A4A;
+  --c-terracotta:   #B07A5A;
+  --c-sage:         #8A9A82;
+  --c-moss:         #6B7D6B;
+
+  /* translucent fills for glass effects */
+  --c-blush:        rgba(236, 222, 206, 0.48);
+  --c-cream:        rgba(238, 228, 212, 0.68);
+  --c-cardBg:       rgba(250, 245, 235, 0.74);
+  --c-sidebarBg:    rgba(250, 245, 235, 0.58);
+  --c-cardSolid:    #F5EDDD;
+
+  /* misc UI */
+  --c-fileIcon:     #C48A30;
+  --c-modalOverlay: rgba(36, 32, 29, 0.38);
+
+  /* elevation shadows */
+  --shadow-mirai:     rgba(44, 38, 30, 0.10);
+  --shadow-miraiHover: rgba(44, 38, 30, 0.16);
+}
+
+/* Dark theme overrides — same token names, inverted values */
+.dark {
+  --c-paper:        #141311;
+  --c-paperDeep:    #1C1A17;
+  --c-ink:          #F2ECE4;
+  --c-muted:        #9E948A;
+  --c-line:         rgba(255, 255, 255, 0.025);
+  --c-amberMirai:   #F0C07A;
+  --c-amberDeep:    #E8A85C;
+  --c-terracotta:   #E07A6A;
+  --c-sage:         #A8C4A0;
+  --c-moss:         #B8D4B0;
+  --c-blush:        rgba(38, 34, 30, 0.52);
+  --c-cream:        rgba(30, 28, 25, 0.72);
+  --c-cardBg:       rgba(26, 24, 21, 0.84);
+  --c-sidebarBg:    rgba(26, 24, 21, 0.68);
+  --c-cardSolid:    #201E1B;
+  --c-fileIcon:     #E8B86A;
+  --c-modalOverlay: rgba(0, 0, 0, 0.60);
+  --shadow-mirai:     rgba(0, 0, 0, 0.30);
+  --shadow-miraiHover: rgba(0, 0, 0, 0.45);
+}
+
+/* Base font stack */
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Display headings use the serif typeface */
+h1, h2, h3, .font-serif {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: -0.02em;
+}
+
+/* Minimal scrollbar — Tauri uses WebKit so this covers all platforms */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-line);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-muted);
+}
+
+body {
+  background: var(--c-paper);
+  color: var(--c-ink);
+  overflow: hidden;
+}
+
+/* Frosted glass card — used for floating panels and modals */
+.glass-panel {
+  background-color: var(--c-cardBg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--c-line);
+}
+
+/* Heavier blur for the bottom dock */
+.glass-dock {
+  background-color: var(--c-paperDeep);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* Smooth theme transition on all elements.
+   Keep this broad — individual components don't need to opt in. */
+body, body * {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease, box-shadow 0.25s ease;
+}
+
+/* Kill transitions on animated elements so they don't lag */
+.animate-spin, [class*="animate-"] {
+  transition: none !important;
+}
