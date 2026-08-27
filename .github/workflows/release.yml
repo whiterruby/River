@@ -19,17 +19,13 @@ jobs:
           - platform: 'ubuntu-22.04'
             target: 'x86_64-unknown-linux-gnu'
             args: '--bundles appimage,deb,rpm'
-          # Linux aarch64 (ARM64)
-          - platform: 'ubuntu-22.04-arm'
-            target: 'aarch64-unknown-linux-gnu'
-            args: '--bundles appimage,deb'
+          # macOS Apple Silicon (M1/M2/M3/M4 aarch64)
+          - platform: 'macos-14'
+            target: 'aarch64-apple-darwin'
+            args: '--bundles dmg,app'
           # macOS Intel (x86_64)
           - platform: 'macos-13'
             target: 'x86_64-apple-darwin'
-            args: '--bundles dmg,app'
-          # macOS Apple Silicon (M1/M2/M3 aarch64)
-          - platform: 'macos-14'
-            target: 'aarch64-apple-darwin'
             args: '--bundles dmg,app'
           # Windows x64 (.exe NSIS, .msi)
           - platform: 'windows-latest'
