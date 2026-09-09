@@ -28,7 +28,6 @@ package-lock.json
 yarn.lock
 
 # Tauri bundle output
-src-tauri/target/
 release/
 
 # Logs
