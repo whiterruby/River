@@ -19,12 +19,12 @@ import {
 import { t } from './locales';
 import { driveApi } from './api';
 
-/** Human-readable byte string (e.g. 4.12 GB). */
+/** Human-readable byte string (e.g. 4.12 GB). Clamped to EB so huge pools never overflow. */
 function formatBytes(bytes: number): string {
-  if (!bytes || bytes === 0) return '0 B';
+  if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
   const k = 1024;
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB'];
+  const i = Math.min(sizes.length - 1, Math.floor(Math.log(bytes) / Math.log(k)));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
@@ -64,8 +64,9 @@ export default function App() {
     });
   }, []);
 
-  // Clamp to 100 so the progress bar never overflows.
-  const usedPct = Math.min(100, poolSummary.used_percentage);
+  // Clamp to 0-100 so the progress bar never overflows and NaN can't leak into styles.
+  const rawPct = Number(poolSummary.used_percentage);
+  const usedPct = Number.isFinite(rawPct) ? Math.min(100, Math.max(0, rawPct)) : 0;
 
   return (
     <div className="relative flex h-screen w-screen bg-transparent text-ink font-sans select-none overflow-hidden">
@@ -202,16 +203,16 @@ export default function App() {
                 <MapleLeafIcon size={13} className="text-terracotta" />
                 {t('total_storage', language)}
               </span>
-              <span className="text-[12px] font-semibold text-terracotta bg-cardBg border border-line px-2 py-0.5 rounded-full">{poolSummary.used_percentage.toFixed(1)}%</span>
+              <span className="text-[12px] font-semibold text-terracotta bg-cardBg border border-line px-2 py-0.5 rounded-full">{usedPct.toFixed(1)}%</span>
             </div>
             {/* Progress bar: color shifts at 75% and 90% thresholds */}
             <div className="relative w-full">
               <div className="w-full h-[8px] bg-paperDeep border border-line rounded-full overflow-hidden p-[2px]">
                 <div
                   className={`h-full rounded-full transition-all duration-700 ${
-                    poolSummary.used_percentage > 90
+                    usedPct > 90
                       ? 'bg-terracotta'
-                      : poolSummary.used_percentage > 75
+                      : usedPct > 75
                       ? 'bg-amberDeep'
                       : 'bg-gradient-to-r from-amberMirai to-terracotta'
                   }`}
