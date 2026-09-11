@@ -110,10 +110,11 @@ export const AccountsView: React.FC = () => {
   };
 
   const formatBytes = (bytes: number) => {
-    if (!bytes || bytes === 0) return '0 GB';
-    const gb = bytes / (1024 * 1024 * 1024);
-    if (gb >= 1000) return (gb / 1024).toFixed(2) + ' TB';
-    return gb.toFixed(2) + ' GB';
+    if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB'];
+    const i = Math.min(sizes.length - 1, Math.floor(Math.log(bytes) / Math.log(k)));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
   // Runs the full OAuth flow: PKCE + state, 127.0.0.1 ephemeral, scope selectable

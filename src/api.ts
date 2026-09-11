@@ -8,13 +8,13 @@ function normalizePoolSummary(raw: any): PoolSummary {
     return { total_accounts: 0, active_accounts: 0, invalid_accounts: 0, total_quota: 0, used_quota: 0, free_quota: 0, used_percentage: 0 };
   }
   return {
-    total_accounts: raw.total_accounts ?? 0,
-    active_accounts: raw.active_accounts ?? 0,
-    invalid_accounts: raw.invalid_accounts ?? raw.invalid_accounts ?? 0,
-    total_quota: raw.total_quota ?? raw.total_quota_bytes ?? 0,
-    used_quota: raw.used_quota ?? raw.used_quota_bytes ?? 0,
-    free_quota: raw.free_quota ?? raw.free_quota_bytes ?? 0,
-    used_percentage: raw.used_percentage ?? 0,
+    total_accounts: raw.total_accounts ?? raw.totalAccounts ?? 0,
+    active_accounts: raw.active_accounts ?? raw.activeAccounts ?? 0,
+    invalid_accounts: raw.invalid_accounts ?? raw.invalidAccounts ?? 0,
+    total_quota: raw.total_quota ?? raw.total_quota_bytes ?? raw.totalQuota ?? 0,
+    used_quota: raw.used_quota ?? raw.used_quota_bytes ?? raw.usedQuota ?? 0,
+    free_quota: raw.free_quota ?? raw.free_quota_bytes ?? raw.freeQuota ?? 0,
+    used_percentage: raw.used_percentage ?? raw.usedPercentage ?? 0,
   };
 }
 
