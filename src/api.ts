@@ -138,10 +138,11 @@ export const driveApi = {
         size: f.size ?? undefined,
         modified_time: f.modified_time ?? f.modifiedTime ?? undefined,
         web_view_link: f.web_view_link ?? f.webViewLink ?? undefined,
-        web_content_link: f.web_content_link ?? undefined,
+        web_content_link: f.web_content_link ?? f.webContentLink ?? undefined,
         icon_link: f.icon_link ?? f.iconLink ?? undefined,
-    thumbnail_link: f.thumbnail_link ?? f.thumbnailLink ?? undefined,
+        thumbnail_link: f.thumbnail_link ?? f.thumbnailLink ?? undefined,
         account_email: f.account_email ?? f.accountEmail ?? undefined,
+        account_label: f.account_label ?? f.accountLabel ?? undefined,
         account_id: f.account_id ?? f.accountId ?? undefined,
       }));
     } catch (e) {
@@ -210,8 +211,11 @@ export const driveApi = {
         const a = document.createElement("a");
         a.href = url;
         a.download = fileName;
+        // Must be in DOM for Firefox; revoke after tick so download can start.
+        document.body.appendChild(a);
         a.click();
-        URL.revokeObjectURL(url);
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
         return { success: true };
       } catch (e2: any) {
         console.error(e2);
