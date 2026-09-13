@@ -232,8 +232,8 @@ export const driveApi = {
       const blob = new Blob([uint8]);
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
-      // Revoke after a short delay so the tab has time to load.
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      // Give the new tab time to load large files before revoking (5s was too short).
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
       return { success: true };
     } catch (e) { console.error(e); return { success: false }; }
   },
