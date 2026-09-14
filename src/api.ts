@@ -206,7 +206,8 @@ export const driveApi = {
       try {
         const data: number[] = await invoke("download_file", { account_id: accountId, file_id: fileId, mime_type: mimeType || null });
         const uint8 = new Uint8Array(data);
-        const blob = new Blob([uint8]);
+        // Preserve MIME so the fallback download opens with the right app.
+        const blob = new Blob([uint8], { type: mimeType || "application/octet-stream" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
