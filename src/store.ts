@@ -203,7 +203,7 @@ export const useDriveStore = create<DriveStore>((set, get) => ({
   },
 
   // Parallel search across all enabled accounts.
-  searchGlobal: async (query: string = '', filter = 'all') => {
+  searchGlobal: async (query: string = '', filter: 'all' | 'file' | 'folder' = 'all') => {
     set({ isSearching: true, searchQuery: query, searchFilter: filter, activeTab: 'search' });
     try {
       const res = await driveApi.searchAllAccounts(query, filter);
