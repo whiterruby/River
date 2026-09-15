@@ -82,7 +82,7 @@ export const SearchView: React.FC = () => {
   };
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    searchGlobal(inputQuery.trim(), searchFilter as any);
+    searchGlobal(inputQuery.trim(), searchFilter);
   };
 
   // Fetch all files on first mount if no previous search exists
