@@ -22,7 +22,7 @@ function normalizePoolSummary(raw: any): PoolSummary {
  * Normalize search payload. Builds per-account result stats from the flat
  * file list when the backend doesn't provide them (backward compat).
  */
-function normalizeSearchResult(raw: any, query: string): SearchResult {
+function normalizeSearchResult(raw: any): SearchResult {
   if (!raw) return { total_found: 0, files: [], account_results: [] };
   const files: DriveFile[] = (raw.files ?? []).map((f: any) => ({
     id: f.id,
@@ -120,7 +120,7 @@ export const driveApi = {
       query: query || null,
       filter: mimeFilter && mimeFilter !== "all" ? mimeFilter : null,
     });
-    return normalizeSearchResult(raw, query);
+    return normalizeSearchResult(raw);
   },
 
   /** List children of a folder. `null` parent_id = Drive root. */
