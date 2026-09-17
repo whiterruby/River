@@ -187,6 +187,9 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, accoun
   // Main content loader. Video/audio use streaming URLs, others download raw bytes.
   useEffect(() => {
     let cancelled = false;
+    // Tracks blob: URLs created in this run so cleanup revokes the right one.
+    // (The `objectUrl` state in the closure is stale, so it must not be used here.)
+    let createdUrl: string | null = null;
     const load = async () => {
       setLoading(true);
       setError(null);
@@ -212,6 +215,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, accoun
           if (!res.ok) throw new Error(`Stream ${res.status}`);
           const blob = await res.blob();
           const blobUrl = URL.createObjectURL(blob);
+          createdUrl = blobUrl;
           if (!cancelled) { setObjectUrl(blobUrl); setLoading(false); }
           return;
         } catch {
@@ -232,6 +236,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, accoun
           if (!res.ok) throw new Error(`Stream ${res.status}`);
           const blob = await res.blob();
           const blobUrl = URL.createObjectURL(blob);
+          createdUrl = blobUrl;
           if (!cancelled) { setObjectUrl(blobUrl); setLoading(false); }
           return;
         } catch {
@@ -281,6 +286,7 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, accoun
           const blobMime = getMimeForBlob(file, previewType);
           const blob = new Blob([uint8], { type: blobMime });
           const url = URL.createObjectURL(blob);
+          createdUrl = url;
           setObjectUrl(url);
         }
       } catch (e: any) {
@@ -294,8 +300,8 @@ export const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, accoun
     return () => {
       cancelled = true;
       // Only revoke blob URLs, not stream URLs
-      if (objectUrl && !objectUrl.startsWith('http://127.0.0.1')) {
-        URL.revokeObjectURL(objectUrl);
+      if (createdUrl && !createdUrl.startsWith('http://127.0.0.1')) {
+        URL.revokeObjectURL(createdUrl);
       }
     };
   }, [file.id, accountId, streamCreds]);
