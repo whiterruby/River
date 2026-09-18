@@ -101,7 +101,6 @@ export const FilesView: React.FC = () => {
   const [uploadFolderFiles, setUploadFolderFiles] = useState<DriveFile[]>([]);
   const [loadingUploadFolders, setLoadingUploadFolders] = useState(false);
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
-  const [openingId, setOpeningId] = useState<string | null>(null);
   const [actionMessage, setActionMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
   const [previewFile, setPreviewFile] = useState<DriveFile | null>(null);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
