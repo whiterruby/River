@@ -118,7 +118,8 @@ export const FilesView: React.FC = () => {
         loadFolderFiles(targetId, currentFolderId);
       }
     }
-  }, [accounts, selectedAccountId]);
+    // Deps mirror every reactive value read inside (store actions are stable).
+  }, [accounts, selectedAccountId, currentFolderId, loadFolderFiles, selectAccount]);
 
   const showToast = (text: string, type: 'success' | 'error' = 'success') => {
     setActionMessage({ text, type });
